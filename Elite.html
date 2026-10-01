@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELITE AI Chat</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        header {
+            background-color: #161b22;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #30363d;
+        }
+        h1 {
+            color: #58a6ff;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        #chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .message {
+            background-color: #161b22;
+            padding: 12px 18px;
+            border-radius: 8px;
+            max-width: 75%;
+            width: fit-content;
+            border: 1px solid #30363d;
+        }
+        .user-message {
+            background-color: #238636;
+            align-self: flex-end;
+            border-color: #2ea043;
+        }
+        .ai-message {
+            align-self: flex-start;
+        }
+        #input-container {
+            padding: 20px;
+            background-color: #161b22;
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid #30363d;
+        }
+        input {
+            flex: 1;
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            padding: 12px;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #58a6ff;
+            color: #0d1117;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #79c0ff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ELITE AI Chat</h1>
+    </header>
+
+    <div id="chat-container">
+        <div class="message ai-message">Hello! I am ELITE. How can I help you today?</div>
+    </div>
+
+    <div id="input-container">
+        <input type="text" id="user-input" placeholder="Type your message here...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const inputField = document.getElementById('user-input');
+            const messageText = inputField.value.trim();
+
+            if (messageText === "") return;
+
+            const chatContainer = document.getElementById('chat-container');
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user-message');
+            userMessage.innerText = messageText;
+            chatContainer.appendChild(userMessage);
+
+            inputField.value = "";
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            setTimeout(() => {
+                const aiMessage = document.createElement('div');
+                aiMessage.classList.add('message', 'ai-message');
+                aiMessage.innerText = "I received your message: '" + messageText + "'. I am an ELITE AI programmed by LEGEND.";
+                chatContainer.appendChild(aiMessage);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
